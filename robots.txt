@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://onchainaaron-rgb.github.io/aaronstalberg-site/sitemap.xml
+Sitemap: https://aaronstalberg.com/sitemap.xml
+
