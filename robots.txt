@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://onchainaaron-rgb.github.io/aaronstalberg-site/sitemap.xml
