@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Redirecting to /about.html</title>
+<link rel="canonical" href="https://aaronstalberg.com/about.html">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=/about.html">
+</head>
+<body>
+<p>This page has moved to <a href="/about.html">/about.html</a>.</p>
+<script>location.replace("/about.html");</script>
+</body>
+</html>
