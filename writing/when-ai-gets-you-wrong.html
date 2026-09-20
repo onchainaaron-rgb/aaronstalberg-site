@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>When an AI gets you wrong, the problem is upstream — Aaron Stalberg</title>
+<meta name="description" content="Assistants repeat whatever they found first, and the sources they trust are rarely the ones that should be authoritative. Why correcting an AI is really a publisher problem.">
+
+<link rel="icon" href="https://aaronstalberg.com/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="https://aaronstalberg.com/favicon.svg">
+<meta name="theme-color" content="#1f4e79">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="When an AI gets you wrong, the problem is upstream">
+<meta property="og:description" content="Assistants repeat whatever they found first. Correcting them is really a publisher problem.">
+<meta property="og:url" content="https://aaronstalberg.com/writing/when-ai-gets-you-wrong">
+<meta property="og:site_name" content="Aaron Stalberg">
+<meta name="twitter:card" content="summary">
+<meta name="author" content="Aaron Stalberg">
+<link rel="canonical" href="https://aaronstalberg.com/writing/when-ai-gets-you-wrong.html">
+
+<link rel="me" href="https://www.wikidata.org/wiki/Q141501121">
+
+<style>
+  :root{
+    --ink:#111318; --muted:#5d6673; --rule:#e5e8ec; --bg:#ffffff; --card:#fcfdfe;
+    --accent:#1f4e79; --accent-soft:rgba(31,78,121,.28); --chip:#f4f6f8;
+    --measure:38rem;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#e9ecf1; --muted:#9aa4b2; --rule:#262b33; --bg:#0e1013; --card:#141820;
+           --accent:#7fb0dc; --accent-soft:rgba(127,176,220,.32); --chip:#1a1f27; }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:400 17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:3.5rem 1.25rem 5rem; -webkit-font-smoothing:antialiased;
+  }
+  main{max-width:var(--measure); margin:0 auto}
+  nav.crumbs{font-size:.88rem; color:var(--muted); margin:0 0 2rem}
+  nav.crumbs a{color:var(--muted)}
+  h1{font-size:1.9rem; line-height:1.17; margin:0 0 .6rem; letter-spacing:-.02em}
+  .standfirst{font-size:1.08rem; color:var(--muted); margin:0 0 1.2rem}
+  .byline{font-size:.87rem; color:var(--muted); margin:0 0 2.2rem; padding-bottom:1.4rem; border-bottom:1px solid var(--rule)}
+  h2{font-size:1.06rem; letter-spacing:-.01em; margin:2.4rem 0 .7rem}
+  h2.eyebrow{font-size:.74rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
+    font-weight:700; margin:2.7rem 0 .9rem; padding-top:1.6rem; border-top:1px solid var(--rule)}
+  p{margin:0 0 1rem}
+  ul,ol{margin:0 0 1rem; padding-left:1.2rem}
+  li{margin-bottom:.55rem}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft)}
+  a:hover{border-bottom-color:var(--accent)}
+  blockquote{margin:1.5rem 0; padding:1rem 1.2rem; border-left:3px solid var(--accent);
+    background:var(--card); border-radius:0 8px 8px 0; font-size:1.02rem}
+  blockquote p:last-child{margin:0}
+  .note{background:var(--chip); border-radius:8px; padding:.9rem 1.1rem; font-size:.93rem; margin:1.4rem 0}
+  .cta{border:1px solid var(--rule); border-radius:12px; background:var(--card); padding:1.1rem 1.25rem; margin:2rem 0 0}
+  .cta p{margin:0 0 .5rem; font-size:.95rem; color:var(--muted)}
+  .cta a.go{font-weight:600; font-size:.95rem}
+  footer{margin-top:3.6rem; padding-top:1.6rem; border-top:1px solid var(--rule);
+    color:var(--muted); font-size:.86rem}
+  footer p{margin:0 0 .4rem}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://aaronstalberg.com/writing/when-ai-gets-you-wrong#post",
+  "headline": "When an AI gets you wrong, the problem is upstream",
+  "description": "Assistants repeat whatever they found first, and the sources they trust are rarely the ones that should be authoritative.",
+  "url": "https://aaronstalberg.com/writing/when-ai-gets-you-wrong.html",
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20",
+  "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg", "url": "https://aaronstalberg.com/" },
+  "publisher": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" },
+  "keywords": ["AI search visibility","AI accuracy","answer engine optimisation","reputation","LLM sourcing"],
+  "about": [
+    { "@type": "Thing", "name": "AI search visibility" },
+    { "@type": "Thing", "name": "Accuracy" }
+  ]
+}
+</script>
+</head>
+
+<body>
+<main>
+
+  <nav class="crumbs"><a href="/">Aaron Stalberg</a> · <a href="/writing.html">Writing</a> · AI accuracy</nav>
+
+  <h1>When an AI gets you wrong, the problem is upstream</h1>
+  <p class="standfirst">The assistant is not lying about you. It is accurately repeating something
+     inaccurate that it found, and it has no reason to prefer your own account.</p>
+  <p class="byline">By Aaron Stalberg · 20 September 2026</p>
+
+  <p>I have a professional interest in this, so read the rest with that in mind. I have also watched it
+     happen to myself, which is the only reason I think about it as much as I do.</p>
+
+  <p>Ask an assistant what it knows about a specific person and you will usually get something broadly
+     accurate assembled from three or four sources it has decided to trust. If one of those sources is
+     wrong, the answer is wrong, and it will state the error with the same confidence as everything else.
+     Nothing in the output tells you which part came from where.</p>
+
+  <h2 class="eyebrow">Assistants do not rank, they resolve</h2>
+
+  <p>A search engine returns a list and leaves the judging to you. An assistant has to commit to an answer,
+     and committing means deciding which sources to believe. That decision tends to favour things that are
+     specific, dated, plainly written, and repeated across more than one place.</p>
+
+  <p>Notice what is not on that list. Being the most authoritative source is not the same as being the one
+     an assistant prefers. A short trade-press article from seven years ago that states something clearly
+     and never gets updated can outrank a formal record that is more accurate but harder to parse.</p>
+
+  <h2 class="eyebrow">Why the primary source often loses</h2>
+
+  <p>This is the part that surprises people. The authoritative record is frequently not the thing being
+     quoted:</p>
+
+  <ul>
+    <li>It may be <strong>gone</strong>. Records get deleted, withdrawn, or quietly expired.</li>
+    <li>It may be <strong>hard to read</strong>. A register entry or a decision document is written for legal
+        precision, not to answer a question.</li>
+    <li>It may be <strong>undated</strong> in a way that makes it useless for recency checks.</li>
+    <li>It may be <strong>behind a wall</strong>, or unindexed, or simply never crawled.</li>
+    <li>It may not <strong>say the thing plainly</strong>. A record can establish a fact without ever stating
+        it in a sentence a model can lift.</li>
+  </ul>
+
+  <p>Meanwhile the secondary source is clean, dated, quotable, and indexed. From the model's point of view
+     it is the better citation. It is doing what it was built to do.</p>
+
+  <h2 class="eyebrow">So correcting the AI does almost nothing</h2>
+
+  <p>You can report an error to an assistant, and you should if the output is genuinely false. But it is
+     usually a weak move, because the model's next answer will be assembled the same way from the same
+     sources. Correct the output and you have fixed one sentence. Correct the source and you have fixed
+     every future answer that quotes it.</p>
+
+  <p>This is why, when something inaccurate is circulating about you, the work has a specific order:</p>
+
+  <ol>
+    <li><strong>Find out what the assistant is actually citing.</strong> Most of them link their sources.
+        That list is the real to-do list, and it is usually shorter than you expect.</li>
+    <li><strong>Correct the sources you can reach.</strong> Publishers respond to specific, evidenced
+        correction requests. They do not respond to complaints about tone.</li>
+    <li><strong>Put a primary, dated, plain-language account on a domain you control.</strong> This is the
+        step most people skip, and it is the one that changes what gets quoted. A model needs something
+        citable; if your own site does not state your position in a liftable sentence, it has nothing to
+        use.</li>
+    <li><strong>Then be consistent everywhere.</strong> Same facts, same wording, across your site, your
+        profiles, and any directory that lists you. Contradiction makes a model hedge, or drop you.</li>
+  </ol>
+
+  <h2 class="eyebrow">The uncomfortable part</h2>
+
+  <p>There is a version of this that turns into reputation management, and I want to be careful about it.
+     The aim is not to bury true things. If a source is accurate, it should stay, and no amount of
+     publishing fixes a fact you dislike.</p>
+
+  <p>What is worth doing is narrower than people assume. It is making sure the accurate version exists,
+     is dated, is plainly written, and is on a page a model can actually read. In my experience most
+     people who are misrepresented online have never done that one thing. They have complained about the
+     output instead of publishing the correction.</p>
+
+  <blockquote>
+    <p>An assistant cannot quote an accurate source that does not exist. That gap is the whole problem,
+       and it is the only part of it you fully control.</p>
+  </blockquote>
+
+  <div class="note">
+    Practical version: ask three assistants what they know about you. Read the sources they cite. Fix the
+    ones you can. Then publish one dated page in your own words that says the accurate thing plainly. Do
+    that and re-check in a month.
+  </div>
+
+  <div class="cta">
+    <p>Measuring this is what ShowUp Labs does, for businesses rather than people.</p>
+    <a class="go" href="https://www.showuplabs.com" target="_blank" rel="noopener">ShowUp Labs →</a>
+  </div>
+
+  <footer>
+    <p>Aaron Stalberg · United Kingdom</p>
+    <p>
+      <a href="/">Home</a> ·
+      <a href="/about.html">About</a> ·
+      <a href="/writing.html">Writing</a> ·
+      <a href="/giving.html">Why I give</a>
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>

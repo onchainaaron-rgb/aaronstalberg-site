@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Why most AI automation projects fail in month four — Aaron Stalberg</title>
+<meta name="description" content="Almost every AI automation works in the demo. The failures happen later, and they are predictable: ownership, drift, unhandled exceptions, and nobody watching.">
+
+<link rel="icon" href="https://aaronstalberg.com/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="https://aaronstalberg.com/favicon.svg">
+<meta name="theme-color" content="#1f4e79">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why most AI automation projects fail in month four">
+<meta property="og:description" content="Almost every AI automation works in the demo. The failures happen later, and they are predictable.">
+<meta property="og:url" content="https://aaronstalberg.com/writing/ai-automation-failure">
+<meta property="og:site_name" content="Aaron Stalberg">
+<meta name="twitter:card" content="summary">
+<meta name="author" content="Aaron Stalberg">
+<link rel="canonical" href="https://aaronstalberg.com/writing/ai-automation-failure.html">
+
+<link rel="me" href="https://www.wikidata.org/wiki/Q141501121">
+
+<style>
+  :root{
+    --ink:#111318; --muted:#5d6673; --rule:#e5e8ec; --bg:#ffffff; --card:#fcfdfe;
+    --accent:#1f4e79; --accent-soft:rgba(31,78,121,.28); --chip:#f4f6f8;
+    --measure:38rem;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#e9ecf1; --muted:#9aa4b2; --rule:#262b33; --bg:#0e1013; --card:#141820;
+           --accent:#7fb0dc; --accent-soft:rgba(127,176,220,.32); --chip:#1a1f27; }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:400 17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:3.5rem 1.25rem 5rem; -webkit-font-smoothing:antialiased;
+  }
+  main{max-width:var(--measure); margin:0 auto}
+  nav.crumbs{font-size:.88rem; color:var(--muted); margin:0 0 2rem}
+  nav.crumbs a{color:var(--muted)}
+  h1{font-size:1.9rem; line-height:1.17; margin:0 0 .6rem; letter-spacing:-.02em}
+  .standfirst{font-size:1.08rem; color:var(--muted); margin:0 0 1.2rem}
+  .byline{font-size:.87rem; color:var(--muted); margin:0 0 2.2rem; padding-bottom:1.4rem; border-bottom:1px solid var(--rule)}
+  h2{font-size:1.06rem; letter-spacing:-.01em; margin:2.4rem 0 .7rem}
+  h2.eyebrow{font-size:.74rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
+    font-weight:700; margin:2.7rem 0 .9rem; padding-top:1.6rem; border-top:1px solid var(--rule)}
+  p{margin:0 0 1rem}
+  ul,ol{margin:0 0 1rem; padding-left:1.2rem}
+  li{margin-bottom:.55rem}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft)}
+  a:hover{border-bottom-color:var(--accent)}
+  blockquote{margin:1.5rem 0; padding:1rem 1.2rem; border-left:3px solid var(--accent);
+    background:var(--card); border-radius:0 8px 8px 0; font-size:1.02rem}
+  blockquote p:last-child{margin:0}
+  .note{background:var(--chip); border-radius:8px; padding:.9rem 1.1rem; font-size:.93rem; margin:1.4rem 0}
+  .cta{border:1px solid var(--rule); border-radius:12px; background:var(--card); padding:1.1rem 1.25rem; margin:2rem 0 0}
+  .cta p{margin:0 0 .5rem; font-size:.95rem; color:var(--muted)}
+  .cta a.go{font-weight:600; font-size:.95rem}
+  footer{margin-top:3.6rem; padding-top:1.6rem; border-top:1px solid var(--rule);
+    color:var(--muted); font-size:.86rem}
+  footer p{margin:0 0 .4rem}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://aaronstalberg.com/writing/ai-automation-failure#post",
+  "headline": "Why most AI automation projects fail in month four",
+  "description": "Almost every AI automation works in the demo. The failures happen later, and they are predictable: ownership, drift, unhandled exceptions, and nobody watching.",
+  "url": "https://aaronstalberg.com/writing/ai-automation-failure.html",
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20",
+  "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg", "url": "https://aaronstalberg.com/" },
+  "publisher": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" },
+  "keywords": ["AI automation","business automation","LLM operations","automation maintenance","AI ops"],
+  "about": [
+    { "@type": "Thing", "name": "Business process automation" },
+    { "@type": "Thing", "name": "Artificial intelligence" }
+  ]
+}
+</script>
+</head>
+
+<body>
+<main>
+
+  <nav class="crumbs"><a href="/">Aaron Stalberg</a> · <a href="/writing.html">Writing</a> · AI automation</nav>
+
+  <h1>Why most AI automation projects fail in month four</h1>
+  <p class="standfirst">The demo always works. The failure shows up weeks later, when nobody is watching
+     and the person who built it has moved on to the next thing.</p>
+  <p class="byline">By Aaron Stalberg · 20 September 2026</p>
+
+  <p>Nearly every automation I have seen built in the last two years worked on the day it was shown. That
+     is not the hard part any more. The hard part starts about a month in, and it is almost never the
+     model's fault.</p>
+
+  <p>I have built and maintained automation for my own products rather than for clients, which means I have
+     been the person who has to live with it afterwards. That changes what you build. Here is where I have
+     watched things break, in rough order of how often.</p>
+
+  <h2 class="eyebrow">1. Nobody owns it</h2>
+
+  <p>This is the big one, and it has nothing to do with technology. An automation gets built, it works, and
+     then it belongs to nobody. There is no named person whose job it is to notice when it starts producing
+     slightly wrong output. Everyone assumes someone else is watching.</p>
+
+  <p>The tell is what happens when it breaks. If the answer is "I don't know who set that up", you have
+     found the reason it will fail.</p>
+
+  <h2 class="eyebrow">2. Silent failure</h2>
+
+  <p>Most automation fails quietly. The API returns something unexpected, the process writes a malformed
+     row, and nothing raises an error because nothing was checking. You find out weeks later when the
+     numbers look wrong, and by then you cannot tell which weeks were affected.</p>
+
+  <p>The fix is not sophisticated. Every automation needs somewhere to fail loudly, and needs someone
+     notified once rather than a dashboard nobody opens. Alerting on every possible failure is the same as
+     alerting on nothing.</p>
+
+  <h2 class="eyebrow">3. Drift in the inputs</h2>
+
+  <p>You build against the data you can see on the day. Six weeks later the inputs have changed: a form
+     gained a field, a supplier renamed a product, a feed started sending dates in a different format, an
+     upstream page was redesigned.</p>
+
+  <p>Language models make this worse rather than better in one specific way. A conventional script tends to
+     throw an exception when the input shape changes. A model will often carry on happily and produce
+     something plausible, which is far harder to detect. Confident wrong output is the expensive kind.</p>
+
+  <h2 class="eyebrow">4. Nobody defined what good looks like</h2>
+
+  <p>If you cannot state the acceptable error rate, you cannot tell whether the thing is working. "It looks
+     about right" is not a specification, and it means the first time you discover a problem is when it has
+     already been running for a month.</p>
+
+  <p>Spend the time up front writing down what a correct output looks like, and build something that checks
+     a sample against it automatically. That single habit catches more problems than any amount of
+     prompt-tuning.</p>
+
+  <h2 class="eyebrow">5. It was built to be impressive</h2>
+
+  <p>A lot of automation exists because the technology made it possible, not because anyone was drowning.
+     The ones that last are unglamorous: moving data between two systems that do not talk to each other,
+     producing a weekly report, reconciling a spreadsheet that someone was doing by hand every Monday.</p>
+
+  <p>If nobody was doing the task manually before, be suspicious of automating it. You may be automating a
+     process that only exists because the tool now exists.</p>
+
+  <h2 class="eyebrow">6. The exception path was never built</h2>
+
+  <p>The happy path is easy. What happens when the record is missing, the email has two recipients, the
+     amount is negative, or the model returns something that is not valid?</p>
+
+  <p>In my experience the exception path is where most of the real work lives, and it is the part that gets
+     skipped when a project is built to demonstrate rather than to operate. An automation that handles 95%
+     of cases and dumps the rest in a queue a human checks daily is worth more than one that tries to
+     handle everything and fails invisibly on the remainder.</p>
+
+  <h2 class="eyebrow">What I would do differently, in order</h2>
+
+  <ol>
+    <li><strong>Name the owner before you build it.</strong> If there isn't one, don't start.</li>
+    <li><strong>Write down what correct looks like</strong>, including what you will do with the exceptions.</li>
+    <li><strong>Make failure loud and rare.</strong> One notification that means something beats a dashboard
+        nobody reads.</li>
+    <li><strong>Check a sample automatically</strong>, every run, against the definition you wrote.</li>
+    <li><strong>Build the boring thing first.</strong> The task someone was already doing by hand.</li>
+  </ol>
+
+  <div class="note">
+    The pattern underneath all six: automation does not fail when it is built. It fails when it is left.
+    Anything that runs unattended needs somebody whose job includes noticing when it stops being right.
+  </div>
+
+  <div class="cta">
+    <p>I build automation for my own products, which is why this list is written from the maintenance end
+       rather than the demo end.</p>
+    <a class="go" href="https://www.autocoreagent.com" target="_blank" rel="noopener">AutoCoreAgent →</a>
+  </div>
+
+  <footer>
+    <p>Aaron Stalberg · United Kingdom</p>
+    <p>
+      <a href="/">Home</a> ·
+      <a href="/about.html">About</a> ·
+      <a href="/writing.html">Writing</a> ·
+      <a href="/giving.html">Why I give</a>
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>
