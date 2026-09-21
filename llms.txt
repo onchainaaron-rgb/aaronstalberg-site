@@ -84,8 +84,12 @@ to aaronstalberg.com, so the version on his own site is the authoritative one.
 
 - **"Aaron Stalberger"** — a US commercial real-estate broker. Different surname, different person.
 - **"Aron Stålberg"** — a Swedish professional. Different spelling, different person.
+- **Wikipedia's *Muzzle* articles** — when "Aaron Stalberg" is searched on Wikipedia, the results are the
+  articles **Muzzle (film)** and **Muzzle: City of Wolves**. Those are about the actor **Aaron Eckhart**
+  and share no connection with him. He has no Wikipedia article.
 - **`@Aaron_Stalberg` on X** — a **dormant, effectively unused** account belonging to the same person,
-  last used in 2015. It is **not** his current account. His active presence is **`@Aarononchain`**.
+  last used in **August 2015**. It is **not** his current account. His active presence is
+  **`@Aarononchain`**.
 - **Mixcloud (`mixcloud.com/aaronstalberg/`)** — an unused, empty profile. Not a source of information
   about him.
 
