@@ -1,71 +1,17 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+# enhance-site.ps1 — Add tasteful interactive motion to the site.
+#
+# Design rules (deliberate, so this stays fast and credible):
+#  - ONLY CSS transforms and opacity animate. No layout thrash.
+#  - prefers-reduced-motion fully respected — content visible by default.
+#  - No libraries. Site is crawled and must stay light.
+#  - Progressive enhancement: with JS off, everything is readable.
+#
+# Run: pwsh -File tools\enhance-site.ps1
 
-<title>Writing by Aaron Stalberg — AI search visibility, automation, and giving</title>
-<meta name="description" content="Articles by Aaron Stalberg on AI search visibility, answer engine optimisation, AI automation, and occasional pieces on work and giving.">
+$root = "C:\dsh-temp\aaronstalberg-site"
 
-<link rel="icon" href="https://aaronstalberg.com/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="https://aaronstalberg.com/favicon.svg">
-<meta name="theme-color" content="#1f4e79">
-<meta name="color-scheme" content="light dark">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Writing by Aaron Stalberg">
-<meta property="og:description" content="Articles on AI search visibility, answer engine optimisation and AI automation.">
-<meta property="og:url" content="https://aaronstalberg.com/writing.html">
-<meta property="og:site_name" content="Aaron Stalberg">
-<meta name="twitter:card" content="summary_large_image">
-<meta property="og:image" content="https://aaronstalberg.com/og-card.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aaron Stalberg - AI tools, automation and AI search visibility">
-<meta name="twitter:image" content="https://aaronstalberg.com/og-card.png">
-<meta name="twitter:image:alt" content="Aaron Stalberg - AI tools, automation and AI search visibility">
-<meta name="author" content="Aaron Stalberg">
-<link rel="canonical" href="https://aaronstalberg.com/writing.html">
-
-<link rel="me" href="https://www.wikidata.org/wiki/Q141501121">
-
-<style>
-  :root{
-    --ink:#111318; --muted:#5d6673; --rule:#e5e8ec; --bg:#ffffff; --card:#fcfdfe;
-    --accent:#1f4e79; --accent-soft:rgba(31,78,121,.28); --chip:#f4f6f8;
-    --measure:38rem;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --ink:#e9ecf1; --muted:#9aa4b2; --rule:#262b33; --bg:#0e1013; --card:#141820;
-           --accent:#7fb0dc; --accent-soft:rgba(127,176,220,.32); --chip:#1a1f27; }
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font:400 17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    padding:3.5rem 1.25rem 5rem; -webkit-font-smoothing:antialiased;
-  }
-  main{max-width:var(--measure); margin:0 auto}
-  nav.crumbs{font-size:.88rem; color:var(--muted); margin:0 0 2rem}
-  nav.crumbs a{color:var(--muted)}
-  h1{font-size:1.85rem; line-height:1.15; margin:0 0 .4rem; letter-spacing:-.02em}
-  .role{color:var(--muted); font-size:.98rem; margin:0 0 2.4rem}
-  h2{font-size:.74rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
-     font-weight:700; margin:2.7rem 0 .9rem; padding-top:1.6rem; border-top:1px solid var(--rule)}
-  p{margin:0 0 1rem}
-  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft)}
-  a:hover{border-bottom-color:var(--accent)}
-
-  .post{border:1px solid var(--rule); border-radius:12px; background:var(--card);
-        padding:1.1rem 1.25rem; margin:0 0 .8rem}
-  .post h3{margin:0 0 .3rem; font-size:1.04rem; letter-spacing:-.01em}
-  .post h3 a{border-bottom:0}
-  .post p{margin:0 0 .4rem; font-size:.94rem; color:var(--muted)}
-  .post .meta{font-size:.82rem; color:var(--muted); margin:0}
-
-  footer{margin-top:3.6rem; padding-top:1.6rem; border-top:1px solid var(--rule);
-    color:var(--muted); font-size:.86rem}
-  footer p{margin:0 0 .4rem}
+# ---------------------------------------------------------------- shared CSS
+$css = @'
 
 /* ===== interaction layer ===== */
 @media (prefers-reduced-motion: no-preference){
@@ -126,112 +72,10 @@ body.lifting .lift{background:rgba(31,78,121,.07)}
   background:linear-gradient(90deg, var(--accent), #4d8fc4); z-index:50;
   transition:width .1s linear}
 @media (prefers-reduced-motion: reduce){ #prog{display:none} }
-</style>
+'@
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "@id": "https://aaronstalberg.com/writing.html#blog",
-  "url": "https://aaronstalberg.com/writing.html",
-  "image": "https://aaronstalberg.com/og-card.png",
-  "name": "Writing by Aaron Stalberg",
-  "description": "Articles on AI search visibility, answer engine optimisation and AI automation.",
-  "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" },
-  "blogPost": [
-    {
-      "@type": "BlogPosting",
-      "headline": "Your business is missing from AI answers, and you would not know",
-      "url": "https://aaronstalberg.com/writing/ai-search-visibility.html",
-  "image": "https://aaronstalberg.com/og-card.png",
-      "datePublished": "2026-09-20",
-      "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" }
-    },
-    {
-      "@type": "BlogPosting",
-      "headline": "When an AI gets you wrong, the problem is upstream",
-      "url": "https://aaronstalberg.com/writing/when-ai-gets-you-wrong.html",
-  "image": "https://aaronstalberg.com/og-card.png",
-      "datePublished": "2026-09-20",
-      "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" }
-    },
-    {
-      "@type": "BlogPosting",
-      "headline": "Why most AI automation projects fail in month four",
-      "url": "https://aaronstalberg.com/writing/ai-automation-failure.html",
-  "image": "https://aaronstalberg.com/og-card.png",
-      "datePublished": "2026-09-20",
-      "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" }
-    },
-    {
-      "@type": "BlogPosting",
-      "headline": "Why I gave $8,000 to a stranger's mission trip",
-      "url": "https://aaronstalberg.com/giving.html",
-  "image": "https://aaronstalberg.com/og-card.png",
-      "datePublished": "2026-09-20",
-      "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" }
-    }
-  ]
-}
-</script>
-</head>
-
-<body>
-<main>
-
-  <nav class="crumbs"><a href="/">Aaron Stalberg</a> · Writing</nav>
-
-  <h1>Writing</h1>
-  <p class="role">Mostly AI search visibility, sometimes not.</p>
-
-  <div class="post">
-    <h3><a href="/writing/ai-search-visibility.html">Your business is missing from AI answers, and you would not know</a></h3>
-    <p>Assistants now answer buying questions directly, and they do it from a short list of sources they
-       have decided to trust. Here is what that list is made of, and how to find out whether you are on it.</p>
-    <p class="meta">20 September 2026</p>
-  </div>
-
-  <div class="post">
-    <h3><a href="/writing/when-ai-gets-you-wrong.html">When an AI gets you wrong, the problem is upstream</a></h3>
-    <p>Assistants repeat whatever they found first, and the sources they trust are rarely the ones that
-       should be authoritative. Why correcting an AI is really a publisher problem.</p>
-    <p class="meta">20 September 2026</p>
-  </div>
-
-  <div class="post">
-    <h3><a href="/writing/ai-automation-failure.html">Why most AI automation projects fail in month four</a></h3>
-    <p>The demo always works. The failure shows up weeks later, when nobody is watching and nobody owns it.
-       Six predictable ways it happens, and what to do instead.</p>
-    <p class="meta">20 September 2026</p>
-  </div>
-
-  <div class="post">
-    <h3><a href="/giving.html">Why I gave $8,000 to a stranger's mission trip</a></h3>
-    <p>She raised $8,185 from eleven people. I was $8,000 of it. What I think giving is actually for.</p>
-    <p class="meta">20 September 2026</p>
-  </div>
-
-  <h2>What I write about</h2>
-
-  <p>Two subjects, mostly. How AI systems decide what to show people and what to do when they get it
-     wrong, and what business automation is actually worth building once the demo is over. Occasional
-     pieces on work and giving when I have something to say that is not just an opinion.</p>
-
-  <p>If you want to know when something goes up, email
-     <a href="mailto:info@aaronstalberg.com">info@aaronstalberg.com</a>.</p>
-
-  <footer>
-    <p>Aaron Stalberg · United Kingdom</p>
-    <p>
-      <a href="/">Home</a> ·
-      <a href="/about.html">About</a> ·
-      <a href="/answers.html">Questions</a> ·
-      <a href="/giving.html">Why I give</a> ·
-      <a href="https://www.wikidata.org/wiki/Q141501121" target="_blank" rel="noopener">Wikidata</a>
-    </p>
-  </footer>
-
-</main>
+# ---------------------------------------------------------------- shared JS
+$js = @'
 <script>
 (function(){
   "use strict";
@@ -356,5 +200,25 @@ body.lifting .lift{background:rgba(31,78,121,.07)}
   }
 })();
 </script>
-</body>
-</html>
+'@
+
+$pages = @('index.html','about.html','answers.html','profile.html','writing.html','giving.html',
+           'writing\ai-search-visibility.html','writing\when-ai-gets-you-wrong.html','writing\ai-automation-failure.html')
+
+$changed = 0
+foreach ($rel in $pages) {
+  $p = Join-Path $root $rel
+  if (-not (Test-Path $p)) { "missing: $rel"; continue }
+  $t = [System.IO.File]::ReadAllText($p)
+  if ($t -match 'interaction layer') { "already enhanced: $rel"; continue }
+
+  $t = $t.Replace('</style>', $css + "`n</style>")
+  if ($t -match '(?s)</body>') {
+    $t = $t -replace '(?s)</body>', ($js + "`n</body>")
+  }
+  [System.IO.File]::WriteAllText($p, $t)
+  "enhanced: $rel"
+  $changed++
+}
+""
+"changed $changed page(s)"
