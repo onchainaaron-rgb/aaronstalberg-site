@@ -109,11 +109,15 @@
     color:var(--muted); font-size:.86rem}
   footer p{margin:0 0 .4rem}
 
-/* ===== interaction layer ===== */
+/* ===== interaction layer (v2) =====
+   Content is VISIBLE BY DEFAULT. The .js-anim class is added by script only when
+   the observer is definitely available, so a failure can never hide content. */
+.js-anim .reveal{opacity:0; transition:opacity .26s cubic-bezier(.2,.7,.2,1)}
+.js-anim .reveal.in{opacity:1}
+@media (prefers-reduced-motion: reduce){
+  .js-anim .reveal{opacity:1 !important; transition:none !important}
+}
 @media (prefers-reduced-motion: no-preference){
-  .reveal{opacity:0; transform:translateY(10px);
-    transition:opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1; transform:none}
 
   /* cards lift and their edge picks up the accent */
   .proj{transition:transform .28s cubic-bezier(.2,.7,.2,1), border-color .28s ease, box-shadow .28s ease}
@@ -136,32 +140,7 @@
   @keyframes sheen{to{transform:translateX(120%)}}
 }
 
-/* liftable-sentence highlight — the interactive idea.
-   Marks the phrases an assistant can quote verbatim. */
-.lift{cursor:help; border-bottom:1px dashed var(--accent-soft);
-  transition:background-color .22s ease, border-color .22s ease, color .22s ease;
-  border-radius:2px; padding:0 .06em}
-.lift:hover, .lift.on{background:rgba(31,78,121,.09); border-bottom-color:var(--accent)}
 
-.toggle-lift{display:inline-flex; align-items:center; gap:.42rem;
-  font-size:.78rem; color:var(--muted); background:none; border:0; padding:.2rem 0;
-  cursor:pointer; font-family:inherit; margin:0 0 1.1rem}
-.toggle-lift:hover{color:var(--accent)}
-.toggle-lift .sw{width:26px; height:15px; border-radius:9px; background:var(--rule);
-  position:relative; transition:background-color .22s ease; flex:0 0 auto}
-.toggle-lift .sw::after{content:""; position:absolute; top:2px; left:2px; width:11px; height:11px;
-  border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.2);
-  transition:transform .22s cubic-bezier(.2,.7,.2,1)}
-.toggle-lift[aria-pressed="true"] .sw{background:var(--accent)}
-.toggle-lift[aria-pressed="true"] .sw::after{transform:translateX(11px)}
-
-.lift-note{font-size:.86rem; color:var(--muted); margin:-.4rem 0 1.4rem;
-  max-height:0; overflow:hidden; opacity:0;
-  transition:max-height .3s ease, opacity .3s ease, margin .3s ease}
-.lift-note.in{max-height:5rem; opacity:1}
-
-/* while lift mode is on, mark the quotable spans visually */
-body.lifting .lift{background:rgba(31,78,121,.07)}
 
 /* scroll progress — one hairline, no layout impact */
 #prog{position:fixed; top:0; left:0; height:2px; width:0;
@@ -306,125 +285,56 @@ body.lifting .lift{background:rgba(31,78,121,.07)}
 <script>
 (function(){
   "use strict";
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var doc = document, reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasIO = "IntersectionObserver" in window;
 
-  /* ---- scroll progress ---- */
+  /* ---------- scroll progress (safe: fixed, pointer-events none) ---------- */
   if (!reduce) {
-    var bar = document.createElement("div");
+    var bar = doc.createElement("div");
     bar.id = "prog";
-    document.body.appendChild(bar);
-    var tick = false;
-    var upd = function(){
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
-      tick = false;
+    bar.setAttribute("aria-hidden", "true");
+    bar.style.cssText = "position:fixed;top:0;left:0;height:2px;width:0;z-index:20;pointer-events:none;background:linear-gradient(90deg,#1f4e79,#4d8fc4)";
+    doc.body.appendChild(bar);
+    var queued = false;
+    var paint = function(){
+      var max = doc.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+      queued = false;
     };
     window.addEventListener("scroll", function(){
-      if (!tick) { tick = true; requestAnimationFrame(upd); }
+      if (!queued) { queued = true; requestAnimationFrame(paint); }
     }, { passive: true });
-    upd();
+    paint();
   }
 
-  /* ---- reveal on scroll ---- */
-  var targets = document.querySelectorAll("main > *:not(header):not(script), .proj, .post, .q, footer");
-  if (reduce || !("IntersectionObserver" in window)) {
-    Array.prototype.forEach.call(targets, function(el){ el.classList.add("reveal","in"); });
-  } else {
+  /* ---------- reveal on scroll ----------
+     Opt in only when we can guarantee the un-hide, and add a hard fail-safe. */
+  if (!reduce && hasIO) {
+    doc.documentElement.classList.add("js-anim");
+    var seen = [];
+    var show = function(el){ el.classList.add("in"); };
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) { show(entries[i].target); io.unobserve(entries[i].target); }
+      }
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.01 });
+
+    var targets = doc.querySelectorAll("main > h2, main > ul, main > p, .proj, .post, .q, footer");
     Array.prototype.forEach.call(targets, function(el, i){
       el.classList.add("reveal");
-      el.style.transitionDelay = Math.min(i % 4, 3) * 55 + "ms";
+      el.style.transitionDelay = Math.min(i % 3, 2) * 45 + "ms";
+      seen.push(el);
       io.observe(el);
     });
+
+    /* FAIL-SAFE: anything still hidden after 2.5s is shown regardless.
+       This is the guarantee the first version lacked. */
+    setTimeout(function(){
+      Array.prototype.forEach.call(seen, function(el){ el.classList.add("in"); });
+    }, 2500);
   }
 
-  /* ---- liftable-sentence highlighter ----
-     Marks the short factual phrases an assistant can quote verbatim.
-     This is a demonstration of the craft, not decoration. */
-  var LIFTABLE = [
-    /Aaron Stalberg builds AI tools and AI-powered businesses/g,
-    /Founder of ShowUp Labs[^.]*\./g,
-    /an AI search visibility product that measures whether AI assistants recommend a business/g,
-    /AutoCoreAgent, an AI automation product/g,
-    /how AI systems decide what to show people/g,
-    /I build AI tools and businesses that run on AI/g
-  ];
-
-  var liftCount = 0;
-  var walker = document.createTreeWalker(document.querySelector("main"), NodeFilter.SHOW_TEXT, {
-    acceptNode: function(n){
-      if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-      var p = n.parentNode;
-      if (!p || /^(SCRIPT|STYLE|A|CODE|BUTTON)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
-      if (p.classList && p.classList.contains("lift")) return NodeFilter.FILTER_REJECT;
-      for (var i = 0; i < LIFTABLE.length; i++) { if (LIFTABLE[i].test(n.nodeValue)) return NodeFilter.FILTER_ACCEPT; }
-      return NodeFilter.FILTER_REJECT;
-    }
-  });
-
-  var nodes = [], n;
-  while ((n = walker.nextNode())) nodes.push(n);
-
-  nodes.forEach(function(node){
-    var text = node.nodeValue, frag = document.createDocumentFragment(), last = 0, hit = null;
-    for (var i = 0; i < LIFTABLE.length; i++) {
-      LIFTABLE[i].lastIndex = 0;
-      var m;
-      while ((m = LIFTABLE[i].exec(text)) !== null) {
-        if (m.index < last) continue;
-        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
-        var span = document.createElement("span");
-        span.className = "lift";
-        span.textContent = m[0];
-        span.title = "A short, checkable statement \u2014 the kind an AI assistant can quote verbatim.";
-        frag.appendChild(span);
-        hit = true;
-        last = m.index + m[0].length;
-      }
-    }
-    if (!hit) return;
-    if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
-    liftCount++;
-    node.parentNode.replaceChild(frag, node);
-  });
-
-  /* ---- the toggle ---- */
-  var total = document.querySelectorAll(".lift").length;
-  if (total > 0) {
-    var host = document.querySelector("main > p.lead") || document.querySelector("main > p");
-    if (host && host.parentNode) {
-      var wrap = document.createElement("div");
-      var btn = document.createElement("button");
-      btn.className = "toggle-lift";
-      btn.setAttribute("aria-pressed", "false");
-      btn.type = "button";
-      btn.innerHTML = '<span class="sw" aria-hidden="true"></span><span>Show the ' + total + ' sentences an AI can quote</span>';
-      var note = document.createElement("p");
-      note.className = "lift-note";
-      note.textContent = "These are the short, checkable statements on this page. Assistants favour text that is specific and easy to lift, which is why they are written this way. Hover any one to see it marked.";
-      wrap.appendChild(btn);
-      host.parentNode.insertBefore(wrap, host.nextSibling);
-      wrap.appendChild(note);
-      btn.addEventListener("click", function(){
-        var on = btn.getAttribute("aria-pressed") === "true";
-        btn.setAttribute("aria-pressed", on ? "false" : "true");
-        document.body.classList.toggle("lifting", !on);
-        note.classList.toggle("in", !on);
-        var spans = document.querySelectorAll(".lift");
-        Array.prototype.forEach.call(spans, function(s){ s.classList.toggle("on", !on); });
-      });
-    }
-  }
-
-  /* ---- active section in the crumb nav, where a nav exists ---- */
-  var heads = document.querySelectorAll("main > h2");
-  if (heads.length && !reduce) {
-    Array.prototype.forEach.call(heads, function(h){ h.classList.add("reveal"); });
-  }
+  
 })();
 </script>
 </body>
