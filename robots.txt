@@ -52,4 +52,7 @@ Allow: /
 # Machine-readable summary of the canonical facts about this site's subject:
 # https://aaronstalberg.com/llms.txt
 
+# Feed
+# https://aaronstalberg.com/feed.xml
+
 Sitemap: https://aaronstalberg.com/sitemap.xml

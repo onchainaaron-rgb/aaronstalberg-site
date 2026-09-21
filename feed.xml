@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aaron Stalberg — writing on AI search visibility and automation</title>
+    <link>https://aaronstalberg.com/writing.html</link>
+    <description>Articles by Aaron Stalberg on how AI systems decide what to show people, why they prefer stale sources over accurate ones, and what goes wrong when AI automation has to run every day.</description>
+    <language>en-gb</language>
+    <copyright>Aaron Stalberg</copyright>
+    <managingEditor>info@aaronstalberg.com (Aaron Stalberg)</managingEditor>
+    <webMaster>info@aaronstalberg.com (Aaron Stalberg)</webMaster>
+    <lastBuildDate>Mon, 21 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <generator>handwritten</generator>
+    <atom:link href="https://aaronstalberg.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Why most AI automation projects fail in month four</title>
+      <link>https://aaronstalberg.com/writing/ai-automation-failure.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/ai-automation-failure.html</guid>
+      <pubDate>Sun, 20 Sep 2026 10:00:00 +0000</pubDate>
+      <description>Almost every AI automation works in the demo. The failures happen later, and they are predictable: no named owner once the build is finished, drift in the inputs nobody monitors, unhandled exceptions that silently drop work, and nobody watching the thing run. Six failure modes and the cheap fix for each.</description>
+    </item>
+
+    <item>
+      <title>When an AI gets you wrong, the problem is upstream</title>
+      <link>https://aaronstalberg.com/writing/when-ai-gets-you-wrong.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/when-ai-gets-you-wrong.html</guid>
+      <pubDate>Sun, 20 Sep 2026 09:00:00 +0000</pubDate>
+      <description>The assistant is not lying about you. It is accurately repeating something inaccurate that it found, and it has no reason to prefer your own account over a source it already trusts. Why correcting an AI's output achieves almost nothing, and correcting the source achieves a great deal.</description>
+    </item>
+
+    <item>
+      <title>Your business is missing from AI answers, and you would not know</title>
+      <link>https://aaronstalberg.com/writing/ai-search-visibility.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/ai-search-visibility.html</guid>
+      <pubDate>Sun, 20 Sep 2026 08:00:00 +0000</pubDate>
+      <description>Ask an assistant to recommend a supplier in most categories and you get a short list of three to five names. The person asking treats that list as the answer. If your business is not on it, the enquiry never reaches you, and no analytics tool reports the loss.</description>
+    </item>
+
+    <item>
+      <title>Why I gave $8,000 to a stranger's mission trip</title>
+      <link>https://aaronstalberg.com/giving.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/giving.html</guid>
+      <pubDate>Sun, 20 Sep 2026 07:00:00 +0000</pubDate>
+      <description>She raised $8,185 from eleven people. I was $8,000 of it. What I think giving is actually for, and why the reasoning matters more than the amount.</description>
+    </item>
+  </channel>
+</rss>
