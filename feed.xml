@@ -8,9 +8,57 @@
     <copyright>Aaron Stalberg</copyright>
     <managingEditor>info@aaronstalberg.com (Aaron Stalberg)</managingEditor>
     <webMaster>info@aaronstalberg.com (Aaron Stalberg)</webMaster>
-    <lastBuildDate>Mon, 21 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Sep 2026 09:00:00 +0000</lastBuildDate>
     <generator>handwritten</generator>
     <atom:link href="https://aaronstalberg.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>How AI assistants choose which sources to believe</title>
+      <link>https://aaronstalberg.com/writing/how-ai-assistants-choose-sources.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/how-ai-assistants-choose-sources.html</guid>
+      <pubDate>Tue, 22 Sep 2026 09:00:00 +0000</pubDate>
+      <description>An assistant answering a question about your category is not ranking pages, it is deciding which sources to trust. What actually gets picked, why vague pages are useless to it, and why the same facts produce different answers in different assistants.</description>
+    </item>
+
+    <item>
+      <title>Mentioned is not the same as cited</title>
+      <link>https://aaronstalberg.com/writing/mentioned-is-not-cited.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/mentioned-is-not-cited.html</guid>
+      <pubDate>Tue, 22 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Being in the answer and being the reason for the answer are two different outcomes, and only one of them compounds. How to tell which one you are, and what moves you from mentioned to cited.</description>
+    </item>
+
+    <item>
+      <title>The same question to five AI engines, five different answers</title>
+      <link>https://aaronstalberg.com/writing/same-question-five-engines.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/same-question-five-engines.html</guid>
+      <pubDate>Tue, 22 Sep 2026 09:00:00 +0000</pubDate>
+      <description>I put one buying question to five assistants on the same day. Different companies named, different sources cited, and occasional disagreement about facts. What the spread between engines tells you, and how to run the test yourself.</description>
+    </item>
+
+    <item>
+      <title>What happens when nobody is left to correct the source</title>
+      <link>https://aaronstalberg.com/writing/when-nobody-corrects-the-source.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/when-nobody-corrects-the-source.html</guid>
+      <pubDate>Tue, 22 Sep 2026 09:00:00 +0000</pubDate>
+      <description>An AI answer is a summary of sources that were correct once. When the publisher folds, the archive closes, or the record is deleted, a wrong answer has nothing left to correct it, and no appeal process exists.</description>
+    </item>
+
+    <item>
+      <title>How to check in one afternoon whether AI knows your business exists</title>
+      <link>https://aaronstalberg.com/writing/check-ai-knows-your-business.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/check-ai-knows-your-business.html</guid>
+      <pubDate>Tue, 22 Sep 2026 09:00:00 +0000</pubDate>
+      <description>A free, manual method: ten buyer questions, four assistants, one spreadsheet. You will probably find you are named less often than you assumed, and that the sources driving the answers are not the pages you have been optimising.</description>
+    </item>
+
+    <item>
+      <title>Why “just fix the website” does not fix AI visibility</title>
+      <link>https://aaronstalberg.com/writing/why-fixing-your-website-is-not-enough.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/why-fixing-your-website-is-not-enough.html</guid>
+      <pubDate>Tue, 22 Sep 2026 09:00:00 +0000</pubDate>
+      <description>I measured 37 sites. Domain authority, traffic and a well-built homepage did not predict whether an assistant named them. What did was how describable the company was, and how consistently that description appeared off the site.</description>
+    </item>
 
     <item>
       <title>Why most AI automation projects fail in month four</title>
