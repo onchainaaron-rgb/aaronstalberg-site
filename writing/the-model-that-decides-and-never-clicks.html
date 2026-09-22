@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The model that decides and never clicks | Aaron Stalberg</title>
+<meta name="description" content="A decision model has no browser, no tools and no memory between calls. It receives a state and returns a judgement. That narrowness is what makes it useful, provided you hand it a closed set.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#08090a">
+<meta name="color-scheme" content="dark light">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The model that decides and never clicks">
+<meta property="og:description" content="A decision model has no browser, no tools and no memory between calls. That narrowness is what makes it useful, provided you hand it a closed set.">
+<meta property="og:url" content="https://aaronstalberg.com/writing/the-model-that-decides-and-never-clicks.html">
+<meta property="og:site_name" content="Aaron Stalberg">
+<meta property="og:image" content="https://aaronstalberg.com/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Aaron Stalberg">
+<link rel="canonical" href="https://aaronstalberg.com/writing/the-model-that-decides-and-never-clicks.html">
+<link rel="alternate" type="application/rss+xml" title="Aaron Stalberg, writing" href="https://aaronstalberg.com/feed.xml">
+<link rel="me" href="https://www.wikidata.org/wiki/Q141501121">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://aaronstalberg.com/writing/the-model-that-decides-and-never-clicks.html#post",
+  "headline": "The model that decides and never clicks",
+  "description": "A decision model has no browser, no tools and no memory between calls. It receives a state and returns a judgement. That narrowness is what makes it useful, provided you hand it a closed set.",
+  "url": "https://aaronstalberg.com/writing/the-model-that-decides-and-never-clicks.html",
+  "image": "https://aaronstalberg.com/og-card.png",
+  "datePublished": "2026-09-22",
+  "dateModified": "2026-09-22",
+  "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg", "url": "https://aaronstalberg.com/" },
+  "publisher": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" },
+  "inLanguage": "en-GB"
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<!DOCTYPE html>
+<header class="mast">
+  <div class="wrap">
+    <div class="mast__in">
+      <a class="mast__brand" href="/"><span class="dot" aria-hidden="true"></span>Aaron Stalberg</a>
+      <nav class="mast__nav" aria-label="Primary">
+        <a href="/about.html">About</a>
+        <a href="/profile.html">Profile</a>
+        <a href="/writing.html" aria-current="page">Writing</a>
+        <a href="/answers.html">Questions</a>
+        <a href="/giving.html">Giving</a>
+      </nav>
+      <div class="mast__tools">
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        </button>
+        <button class="icon-btn mast__menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="mast__cta" href="mailto:info@aaronstalberg.com">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="sheet" id="sheet" aria-label="Mobile">
+  <a href="/about.html">About</a><a href="/profile.html">Profile</a><a href="/writing.html">Writing</a>
+  <a href="/answers.html">Questions</a><a href="/giving.html">Giving</a>
+  <a href="mailto:info@aaronstalberg.com">Get in touch</a>
+</nav>
+<main id="main">
+<article class="wrap">
+  <div class="prose">
+    <nav class="lbl" style="margin-bottom:var(--s5)"><a href="/writing.html" style="color:inherit">Writing</a> &nbsp;/&nbsp; Building</nav>
+    <h1>The model that decides and never clicks</h1>
+    <p class="standfirst">A model with no browser, no tools and no memory between calls is the most useful kind, provided you hand it a closed set.</p>
+    <p class="byline">By Aaron Stalberg &nbsp;&middot;&nbsp; 22 September 2026</p>
+
+  <p>Most browser automation puts the model in the driver's seat. It gets a page, a set of tools and a loop, and it decides what to do next with no idea whether the next step can actually be performed.</p>
+
+  <p>I run it the other way round, and it holds up better in production. The model never touches the page. It receives a description of the current state and returns a judgement. Separate code performs the action.</p>
+
+  <h2 class="eyebrow">What a decision model is</h2>
+
+  <p>The distinction matters, because the word agent has been stretched to cover both.</p>
+
+  <p>A decision model has no browser, no tools and no memory between calls. You send it a state, which is text. You send it questions. Each question has a fixed answer type.</p>
+
+  <ul>
+  <li><strong>A probability</strong>, for a yes or no judgement.
+  </li>
+  <li><strong>A choice</strong>, from a list you supply.
+  </li>
+  <li><strong>A score</strong> between 0 and 1, for a graded judgement.
+  </li>
+  </ul>
+
+  <p>That is the whole interface. It cannot navigate, click, type or retry. Ask it to do those things and you have misunderstood it. Ask it to judge, and it is fast, cheap and consistent.</p>
+
+  <p>The surrounding code, which I call the harness, does everything else. It reads the page, builds the state string, sends the questions, parses the answers, performs the action, and then loops back to read the page again. Observe, decide, act, observe.</p>
+
+  <h2 class="eyebrow">Why this beats an open-ended loop for real work</h2>
+
+  <p>Three reasons, and none of them is about capability.</p>
+
+  <ul>
+  <li><strong>Every decision is loggable.</strong> The model's answer is one of a closed set, so the log records choice 27 of 33 with a stated confidence, not a paragraph of reasoning that a person has to interpret later.
+  </li>
+  <li><strong>The action layer is testable on its own.</strong> Whether a click landed is a question about the harness. You can test that with no model in the loop at all, which means a failure tells you which half broke.
+  </li>
+  <li><strong>The blast radius is small.</strong> A model that can only choose from a list cannot invent a step. The worst outcome is a wrong choice from a known set, which is recoverable and usually obvious.
+  </li>
+  </ul>
+
+  <h2 class="eyebrow">The failure mode, which is the useful part</h2>
+
+  <p>A decision model is exactly as good as the options you hand it.</p>
+
+  <p>Early on I asked one to find the reply control on a webmail page and click it. The state described the page accurately. The model returned a reasonable answer, and the answer was useless, because the control had no readable label and had never been in the option set. Nothing in the output said that. It answered the question I asked, and the question was wrong.</p>
+
+  <p>The fix is to stop asking open questions and start enumerating. I now walk the page, tag every clickable element, and hand the model the numbered list as the closed set. On the page that produced the useless answer there were 33 candidates, one of which was the reply control. Given the list, the model picked it with a stated confidence of 1.00.</p>
+
+  <p>The lesson generalises. When a decision model gives you a plausible answer you cannot act on, the fault is almost always a missing option, and not a weak model.</p>
+
+  <h2 class="eyebrow">Turning a judgement into a rubric</h2>
+
+  <p>The second use is the one I did not expect to matter as much as it does.</p>
+
+  <p>Any judgement a person makes repeatedly can usually be converted into a small set of closed questions, and then it stops being a judgement and becomes a measurement. I wanted to know whether the AI answer a search engine gives for a name states that a spent restriction has ended. Read as prose, that is a matter of opinion. Broken into questions, it is a rubric.</p>
+
+  <ul>
+  <li>Is an AI-generated answer present? A probability.
+  </li>
+  <li>Does it state the end date? One of none, implied, explicit.
+  </li>
+  <li>What date does it give for the associated fine? One of 2017, 2018, not stated, other.
+  </li>
+  </ul>
+
+  <p>Run that on every reading and you get a series rather than an impression. The same answer scored twice comes out the same way, and a reading from three weeks ago is comparable to one from today.</p>
+
+  <h2 class="eyebrow">Where the person stays</h2>
+
+  <p>I keep a human at three points, and I would not move them.</p>
+
+  <p>Logins are the person's, because credential handling in automation is a risk with no upside. Irreversible actions are the person's, so the model proposes and a person sends. And the decision about whether the whole task should happen is the person's, because that is a question about intent, and intent is not in the state string.</p>
+
+  <p>A decision model does not remove the person from the loop. It removes the part of the loop that was always mechanical, which is choosing between options that were already known.</p>
+
+  <h2 class="eyebrow">The honest limitation</h2>
+
+  <p>The model has no memory between calls. Everything it needs must be inside the state you send, and that includes the reason the task exists. Send it a thin state and you get a confident answer about the wrong thing.</p>
+
+  <p>It also cannot tell you that your option set is incomplete. That failure is silent, and it looks like a model problem when it is a design problem.</p>
+
+  <p>I build these systems for a living, so I have an interest in the approach. The reason I settled on it is narrow and practical. It is the only arrangement where I can read the logs afterwards and say exactly what was decided, by what, from which options, and whether it worked.</p>
+
+  <div class="cta">
+  <p>AutoCoreAgent builds custom AI systems for businesses: voice agents, outreach automation, workflow automation and the operational parts most projects skip.
+  </p>
+  <a class="go" href="https://www.autocoreagent.com" target="_blank" rel="noopener">AutoCoreAgent →</a>
+  </div>
+
+  <h2 class="eyebrow">Related reading</h2>
+
+  <ul class="related">
+  <li><a href="/writing/ai-automation-failure.html">Why most AI automation projects fail in month four</a>
+  </li>
+  <li><a href="/writing/how-ai-assistants-choose-sources.html">How AI assistants choose which sources to believe</a>
+  </li>
+  <li><a href="/writing/mentioned-is-not-cited.html">Mentioned is not the same as cited</a>
+  </li>
+  </ul>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h4>Aaron Stalberg</h4>
+        <p style="max-width:34ch; color:var(--n-5)">I build AI tools and AI-powered businesses. Founder of ShowUp Labs and AutoCoreAgent.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="/profile.html">Profile</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/writing.html">Writing</a></li>
+          <li><a href="/answers.html">Questions</a></li>
+          <li><a href="/giving.html">Why I give</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://www.showuplabs.com" target="_blank" rel="noopener">ShowUp Labs</a></li>
+          <li><a href="https://www.autocoreagent.com" target="_blank" rel="noopener">AutoCoreAgent</a></li>
+          <li><a href="https://cutworks.studio" target="_blank" rel="noopener">Cutworks Studio</a></li>
+          <li><a href="https://www.wikidata.org/wiki/Q141501121" target="_blank" rel="noopener">Wikidata</a></li>
+          <li><a href="https://github.com/onchainaaron-rgb" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__base"><span>&copy; 2026 Aaron Stalberg</span><span>United Kingdom</span></div>
+  </div>
+</footer>
+</main>
+<script>
+(function(){
+  "use strict";
+  var root=document.documentElement, saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  root.setAttribute('data-theme', saved==='light'?'light':'dark');
+  var b=document.getElementById('theme');
+  if(b)b.addEventListener('click',function(){
+    var n=root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme',n); try{localStorage.setItem('theme',n);}catch(e){}
+  });
+  var m=document.getElementById('menu'), s=document.getElementById('sheet');
+  if(m&&s){
+    m.addEventListener('click',function(){
+      var o=s.getAttribute('data-open')==='true';
+      s.setAttribute('data-open',o?'false':'true'); m.setAttribute('aria-expanded',o?'false':'true');
+    });
+    s.addEventListener('click',function(e){ if(e.target.tagName==='A'){s.setAttribute('data-open','false');m.setAttribute('aria-expanded','false');} });
+  }
+})();
+</script>
+</body>
+</html>

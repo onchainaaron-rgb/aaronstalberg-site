@@ -37,6 +37,14 @@
     </item>
 
     <item>
+      <title>The model that decides and never clicks</title>
+      <link>https://aaronstalberg.com/writing/the-model-that-decides-and-never-clicks.html</link>
+      <guid isPermaLink="true">https://aaronstalberg.com/writing/the-model-that-decides-and-never-clicks.html</guid>
+      <pubDate>Tue, 22 Sep 2026 12:00:00 +0000</pubDate>
+      <description>How I build browser automation: a model that has no browser, no tools and no memory between calls, and returns only a judgement from a closed set. The surrounding harness acts. Includes the failure that looks like a model problem and is a design problem.</description>
+    </item>
+
+    <item>
       <title>What happens when nobody is left to correct the source</title>
       <link>https://aaronstalberg.com/writing/when-nobody-corrects-the-source.html</link>
       <guid isPermaLink="true">https://aaronstalberg.com/writing/when-nobody-corrects-the-source.html</guid>
