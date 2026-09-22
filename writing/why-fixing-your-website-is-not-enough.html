@@ -1,129 +1,27 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Why “just fix the website” does not fix AI visibility — Aaron Stalberg</title>
 <meta name="description" content="I measured 37 sites. Domain authority, traffic and a tidy homepage did not predict whether an assistant named them. Here is what did.">
-
-<link rel="icon" href="https://aaronstalberg.com/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="https://aaronstalberg.com/favicon.svg">
-<meta name="theme-color" content="#1f4e79">
-<meta name="color-scheme" content="light dark">
-
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#08090a">
+<meta name="color-scheme" content="dark light">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Why “just fix the website” does not fix AI visibility">
 <meta property="og:description" content="I measured 37 sites. Domain authority, traffic and a tidy homepage did not predict whether an assistant named them. Here is what did.">
 <meta property="og:url" content="https://aaronstalberg.com/writing/why-fixing-your-website-is-not-enough.html">
 <meta property="og:site_name" content="Aaron Stalberg">
-<meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://aaronstalberg.com/og-card.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aaron Stalberg - AI tools, automation and AI search visibility">
-<meta name="twitter:image" content="https://aaronstalberg.com/og-card.png">
-<meta name="twitter:image:alt" content="Aaron Stalberg - AI tools, automation and AI search visibility">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Aaron Stalberg">
-<link rel="alternate" type="application/rss+xml" title="Aaron Stalberg — writing" href="https://aaronstalberg.com/feed.xml">
 <link rel="canonical" href="https://aaronstalberg.com/writing/why-fixing-your-website-is-not-enough.html">
-
+<link rel="alternate" type="application/rss+xml" title="Aaron Stalberg — writing" href="https://aaronstalberg.com/feed.xml">
 <link rel="me" href="https://www.wikidata.org/wiki/Q141501121">
-
-<style>
-  :root{
-    --ink:#111318; --muted:#5d6673; --rule:#e5e8ec; --bg:#ffffff; --card:#fcfdfe;
-    --accent:#1f4e79; --accent-soft:rgba(31,78,121,.28); --chip:#f4f6f8;
-    --measure:36rem;
-  /* --- Swiss Modernism 2.0 tokens ---
-     8px base unit; modular type scale (1.25); single accent. */
-  --u: 8px;
-  --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
-  /* body is the anchor and never scales below it */
-  --t-xs: .78rem; --t-sm: .9rem; --t-base: 1.0625rem; --t-lg: 1.125rem;
-  --t-xl: 1.3rem; --t-2xl: 1.9rem; --t-3xl: 2.4rem;
-  --lh-tight: 1.15; --lh-body: 1.65;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --ink:#e9ecf1; --muted:#9aa4b2; --rule:#262b33; --bg:#0e1013; --card:#141820;
-           --accent:#7fb0dc; --accent-soft:rgba(127,176,220,.32); --chip:#1a1f27; }
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font:400 var(--t-base)/var(--lh-body) -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    padding:3.5rem 1.25rem 5rem; -webkit-font-smoothing:antialiased;
-  }
-  main{max-width:var(--measure); margin:0 auto}
-  nav.crumbs{font-size:.88rem; color:var(--muted); margin:0 0 2rem}
-  nav.crumbs a{color:var(--muted)}
-  h1{font-size:var(--t-2xl); line-height:var(--lh-tight); margin:0 0 .6rem; letter-spacing:-.02em}
-  .standfirst{font-size:1.08rem; color:var(--muted); margin:0 0 1.2rem}
-  .byline{font-size:.87rem; color:var(--muted); margin:0 0 2.2rem; padding-bottom:1.4rem; border-bottom:1px solid var(--rule)}
-  h2{font-size:1.06rem; letter-spacing:-.01em; margin:2.4rem 0 .7rem}
-  h2.eyebrow{font-size:.74rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
-    font-weight:700; margin:2.7rem 0 .9rem; padding-top:1.6rem; border-top:1px solid var(--rule)}
-  p{margin:0 0 1rem}
-  ul,ol{margin:0 0 1rem; padding-left:1.2rem}
-  li{margin-bottom:.5rem}
-  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft)}
-  a:hover{border-bottom-color:var(--accent)}
-  blockquote{margin:1.5rem 0; padding:1rem 1.2rem; border-left:3px solid var(--accent);
-    background:var(--card); border-radius:0 8px 8px 0; font-size:1.02rem}
-  blockquote p:last-child{margin:0}
-  .note{background:var(--chip); border-radius:8px; padding:.9rem 1.1rem; font-size:.93rem; margin:1.4rem 0}
-  .cta{border:1px solid var(--rule); border-radius:12px; background:var(--card); padding:1.1rem 1.25rem; margin:2rem 0 0}
-  .cta p{margin:0 0 .5rem; font-size:.95rem; color:var(--muted)}
-  .cta a.go{font-weight:600; font-size:.95rem}
-  footer{margin-top:3.6rem; padding-top:1.6rem; border-top:1px solid var(--rule);
-    color:var(--muted); font-size:.86rem}
-  footer p{margin:0 0 .4rem}
-
-/* ===== interaction layer (v2) =====
-   Content is VISIBLE BY DEFAULT. The .js-anim class is added by script only when
-   the observer is definitely available, so a failure can never hide content. */
-.js-anim .reveal{opacity:0; transition:opacity .26s cubic-bezier(.2,.7,.2,1)}
-.js-anim .reveal.in{opacity:1}
-@media (prefers-reduced-motion: reduce){
-  .js-anim .reveal{opacity:1 !important; transition:none !important}
-}
-@media (prefers-reduced-motion: no-preference){
-
-  /* cards lift and their edge picks up the accent */
-  .proj{transition:transform .28s cubic-bezier(.2,.7,.2,1), border-color .28s ease, box-shadow .28s ease}
-  .proj:hover{transform:translateY(-2px); border-color:var(--accent-soft);
-    box-shadow:0 6px 22px rgba(31,78,121,.09)}
-
-  /* social pills */
-  .socials a{transition:border-color .2s ease, color .2s ease, transform .2s ease}
-  .socials a:hover{transform:translateY(-1px)}
-
-  /* tags */
-  .tags li{transition:background-color .2s ease, color .2s ease, transform .2s ease}
-  .tags li:hover{transform:translateY(-1px); color:var(--accent)}
-
-  /* the monogram gets a slow, subtle sheen once */
-  .mark{position:relative; overflow:hidden}
-  .mark::after{content:""; position:absolute; inset:0;
-    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%);
-    transform:translateX(-120%); animation:sheen 2.6s cubic-bezier(.3,.6,.2,1) .35s 1}
-  @keyframes sheen{to{transform:translateX(120%)}}
-}
-
-
-
-/* scroll progress — one hairline, no layout impact */
-#prog{position:fixed; top:0; left:0; height:2px; width:0;
-  background:linear-gradient(90deg, var(--accent), #4d8fc4); z-index:50;
-  transition:width .1s linear}
-@media (prefers-reduced-motion: reduce){ #prog{display:none} }
-
-  main p{font-size:var(--t-base)}
-  ul.related{margin:.2rem 0 1.6rem}
-  ul.related li{margin-bottom:.45rem}
-  main .lead{font-size:var(--t-lg)}
-</style>
-
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -137,32 +35,50 @@
   "dateModified": "2026-09-22",
   "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg", "url": "https://aaronstalberg.com/" },
   "publisher": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" },
-  "keywords": ["AI search visibility","answer engine optimisation","generative engine optimisation","AEO","GEO","LLM visibility"],
-  "about": [
-    { "@type": "Thing", "name": "Answer engine optimisation" },
-    { "@type": "Thing", "name": "Generative engine optimisation" },
-    { "@type": "Thing", "name": "Search engine optimisation" }
-  ]
+  "inLanguage": "en-GB"
 }
 </script>
 </head>
-
 <body>
-<main>
-
-  <nav class="crumbs"><a href="/">Aaron Stalberg</a> · <a href="/writing.html">Writing</a> · Fixing the website is not enough
-  </nav>
-
-  <h1>Why “just fix the website” does not fix AI visibility
-  </h1>
-
-  <p class="standfirst">A well-built website is necessary and nowhere near sufficient. The gap is where most of the work sits.
-  </p>
-
-  <p class="byline">By Aaron Stalberg · 22 September 2026
-  </p>
-
-  <p>The most common advice about AI visibility is to fix your own website. Get the structured data right, state what you do, publish good content. All of that is correct, and none of it is enough on its own.
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<!DOCTYPE html>
+<header class="mast">
+  <div class="wrap">
+    <div class="mast__in">
+      <a class="mast__brand" href="/"><span class="dot" aria-hidden="true"></span>Aaron Stalberg</a>
+      <nav class="mast__nav" aria-label="Primary">
+        <a href="/about.html">About</a>
+        <a href="/profile.html">Profile</a>
+        <a href="/writing.html" aria-current="page">Writing</a>
+        <a href="/answers.html">Questions</a>
+        <a href="/giving.html">Giving</a>
+      </nav>
+      <div class="mast__tools">
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        </button>
+        <button class="icon-btn mast__menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="mast__cta" href="mailto:info@aaronstalberg.com">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="sheet" id="sheet" aria-label="Mobile">
+  <a href="/about.html">About</a><a href="/profile.html">Profile</a><a href="/writing.html">Writing</a>
+  <a href="/answers.html">Questions</a><a href="/giving.html">Giving</a>
+  <a href="mailto:info@aaronstalberg.com">Get in touch</a>
+</nav>
+<main id="main">
+<article class="wrap">
+  <div class="prose">
+    <nav class="lbl" style="margin-bottom:var(--s5)"><a href="/writing.html" style="color:inherit">Writing</a> &nbsp;/&nbsp; Fixing the website is not enough</nav>
+    <h1>Why “just fix the website” does not fix AI visibility</h1>
+    <p class="standfirst">A well-built website is necessary and nowhere near sufficient. The gap is where most of the work sits.</p>
+    <p class="byline">By Aaron Stalberg &nbsp;&middot;&nbsp; 22 September 2026</p>
+<p>The most common advice about AI visibility is to fix your own website. Get the structured data right, state what you do, publish good content. All of that is correct, and none of it is enough on its own.
   </p>
 
   <p>I measured 37 sites for how often assistants named them in their own category. The results did not line up with anything I expected.
@@ -246,70 +162,59 @@
   <li><a href="/writing/ai-search-visibility.html">Your business is missing from AI answers</a>
   </li>
   </ul>
+  </div>
+</article>
 
-  <footer>
-  <p>Aaron Stalberg · United Kingdom
-  </p>
-
-  <p> <a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/answers.html">Questions</a> · <a href="/writing.html">Writing</a> · <a href="/giving.html">Why I give</a>
-  </p>
-
-  </footer>
-
+<footer>
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h4>Aaron Stalberg</h4>
+        <p style="max-width:34ch; color:var(--n-5)">I build AI tools and AI-powered businesses. Founder of ShowUp Labs and AutoCoreAgent.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="/profile.html">Profile</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/writing.html">Writing</a></li>
+          <li><a href="/answers.html">Questions</a></li>
+          <li><a href="/giving.html">Why I give</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://www.showuplabs.com" target="_blank" rel="noopener">ShowUp Labs</a></li>
+          <li><a href="https://www.autocoreagent.com" target="_blank" rel="noopener">AutoCoreAgent</a></li>
+          <li><a href="https://www.wikidata.org/wiki/Q141501121" target="_blank" rel="noopener">Wikidata</a></li>
+          <li><a href="https://github.com/onchainaaron-rgb" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__base"><span>&copy; 2026 Aaron Stalberg</span><span>United Kingdom</span></div>
+  </div>
+</footer>
 </main>
 <script>
 (function(){
   "use strict";
-  var doc = document, reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var hasIO = "IntersectionObserver" in window;
-
-  /* ---------- scroll progress (safe: fixed, pointer-events none) ---------- */
-  if (!reduce) {
-    var bar = doc.createElement("div");
-    bar.id = "prog";
-    bar.setAttribute("aria-hidden", "true");
-    bar.style.cssText = "position:fixed;top:0;left:0;height:2px;width:0;z-index:20;pointer-events:none;background:linear-gradient(90deg,#1f4e79,#4d8fc4)";
-    doc.body.appendChild(bar);
-    var queued = false;
-    var paint = function(){
-      var max = doc.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
-      queued = false;
-    };
-    window.addEventListener("scroll", function(){
-      if (!queued) { queued = true; requestAnimationFrame(paint); }
-    }, { passive: true });
-    paint();
-  }
-
-  /* ---------- reveal on scroll ----------
-     Opt in only when we can guarantee the un-hide, and add a hard fail-safe. */
-  if (!reduce && hasIO) {
-    doc.documentElement.classList.add("js-anim");
-    var seen = [];
-    var show = function(el){ el.classList.add("in"); };
-    var io = new IntersectionObserver(function(entries){
-      for (var i = 0; i < entries.length; i++) {
-        if (entries[i].isIntersecting) { show(entries[i].target); io.unobserve(entries[i].target); }
-      }
-    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.01 });
-
-    var targets = doc.querySelectorAll("main > h2, main > ul, main > p, .proj, .post, .q, footer");
-    Array.prototype.forEach.call(targets, function(el, i){
-      el.classList.add("reveal");
-      el.style.transitionDelay = Math.min(i % 3, 2) * 45 + "ms";
-      seen.push(el);
-      io.observe(el);
+  var root=document.documentElement, saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  root.setAttribute('data-theme', saved==='light'?'light':'dark');
+  var b=document.getElementById('theme');
+  if(b)b.addEventListener('click',function(){
+    var n=root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme',n); try{localStorage.setItem('theme',n);}catch(e){}
+  });
+  var m=document.getElementById('menu'), s=document.getElementById('sheet');
+  if(m&&s){
+    m.addEventListener('click',function(){
+      var o=s.getAttribute('data-open')==='true';
+      s.setAttribute('data-open',o?'false':'true'); m.setAttribute('aria-expanded',o?'false':'true');
     });
-
-    /* FAIL-SAFE: anything still hidden after 2.5s is shown regardless.
-       This is the guarantee the first version lacked. */
-    setTimeout(function(){
-      Array.prototype.forEach.call(seen, function(el){ el.classList.add("in"); });
-    }, 2500);
+    s.addEventListener('click',function(e){ if(e.target.tagName==='A'){s.setAttribute('data-open','false');m.setAttribute('aria-expanded','false');} });
   }
-
-  
 })();
 </script>
 </body>

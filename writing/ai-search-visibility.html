@@ -1,127 +1,27 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Your business is missing from AI answers, and you would not know — Aaron Stalberg</title>
 <meta name="description" content="AI assistants answer buying questions from a short list of sources they have decided to trust. Here is what that list is made of, and how to find out whether you are on it.">
-
-<link rel="icon" href="https://aaronstalberg.com/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="https://aaronstalberg.com/favicon.svg">
-<meta name="theme-color" content="#1f4e79">
-<meta name="color-scheme" content="light dark">
-
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#08090a">
+<meta name="color-scheme" content="dark light">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Your business is missing from AI answers, and you would not know">
-<meta property="og:description" content="Assistants answer from a short list of sources they trust. Here is how to check whether you are on it.">
+<meta property="og:description" content="AI assistants answer buying questions from a short list of sources they have decided to trust. Here is what that list is made of, and how to find out whether you are on it.">
 <meta property="og:url" content="https://aaronstalberg.com/writing/ai-search-visibility.html">
 <meta property="og:site_name" content="Aaron Stalberg">
-<meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://aaronstalberg.com/og-card.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aaron Stalberg - AI tools, automation and AI search visibility">
-<meta name="twitter:image" content="https://aaronstalberg.com/og-card.png">
-<meta name="twitter:image:alt" content="Aaron Stalberg - AI tools, automation and AI search visibility">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Aaron Stalberg">
-<link rel="alternate" type="application/rss+xml" title="Aaron Stalberg — writing" href="https://aaronstalberg.com/feed.xml">
 <link rel="canonical" href="https://aaronstalberg.com/writing/ai-search-visibility.html">
-
+<link rel="alternate" type="application/rss+xml" title="Aaron Stalberg — writing" href="https://aaronstalberg.com/feed.xml">
 <link rel="me" href="https://www.wikidata.org/wiki/Q141501121">
-
-<style>
-  :root{
-    --ink:#111318; --muted:#5d6673; --rule:#e5e8ec; --bg:#ffffff; --card:#fcfdfe;
-    --accent:#1f4e79; --accent-soft:rgba(31,78,121,.28); --chip:#f4f6f8;
-    --measure:36rem;
-  /* --- Swiss Modernism 2.0 tokens ---
-     8px base unit; modular type scale (1.25); single accent. */
-  --u: 8px;
-  --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
-  /* body is the anchor and never scales below it */
-  --t-xs: .78rem; --t-sm: .9rem; --t-base: 1.0625rem; --t-lg: 1.125rem;
-  --t-xl: 1.3rem; --t-2xl: 1.9rem; --t-3xl: 2.4rem;
-  --lh-tight: 1.15; --lh-body: 1.65;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --ink:#e9ecf1; --muted:#9aa4b2; --rule:#262b33; --bg:#0e1013; --card:#141820;
-           --accent:#7fb0dc; --accent-soft:rgba(127,176,220,.32); --chip:#1a1f27; }
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font:400 var(--t-base)/var(--lh-body) -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    padding:3.5rem 1.25rem 5rem; -webkit-font-smoothing:antialiased;
-  }
-  main{max-width:var(--measure); margin:0 auto}
-  nav.crumbs{font-size:.88rem; color:var(--muted); margin:0 0 2rem}
-  nav.crumbs a{color:var(--muted)}
-  h1{font-size:var(--t-2xl); line-height:var(--lh-tight); margin:0 0 .6rem; letter-spacing:-.02em}
-  .standfirst{font-size:1.08rem; color:var(--muted); margin:0 0 1.2rem}
-  .byline{font-size:.87rem; color:var(--muted); margin:0 0 2.2rem; padding-bottom:1.4rem; border-bottom:1px solid var(--rule)}
-  h2{font-size:1.06rem; letter-spacing:-.01em; margin:2.4rem 0 .7rem}
-  h2.eyebrow{font-size:.74rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
-    font-weight:700; margin:2.7rem 0 .9rem; padding-top:1.6rem; border-top:1px solid var(--rule)}
-  p{margin:0 0 1rem}
-  ul,ol{margin:0 0 1rem; padding-left:1.2rem}
-  li{margin-bottom:.5rem}
-  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft)}
-  a:hover{border-bottom-color:var(--accent)}
-  blockquote{margin:1.5rem 0; padding:1rem 1.2rem; border-left:3px solid var(--accent);
-    background:var(--card); border-radius:0 8px 8px 0; font-size:1.02rem}
-  blockquote p:last-child{margin:0}
-  .note{background:var(--chip); border-radius:8px; padding:.9rem 1.1rem; font-size:.93rem; margin:1.4rem 0}
-  .cta{border:1px solid var(--rule); border-radius:12px; background:var(--card); padding:1.1rem 1.25rem; margin:2rem 0 0}
-  .cta p{margin:0 0 .5rem; font-size:.95rem; color:var(--muted)}
-  .cta a.go{font-weight:600; font-size:.95rem}
-  footer{margin-top:3.6rem; padding-top:1.6rem; border-top:1px solid var(--rule);
-    color:var(--muted); font-size:.86rem}
-  footer p{margin:0 0 .4rem}
-
-/* ===== interaction layer (v2) =====
-   Content is VISIBLE BY DEFAULT. The .js-anim class is added by script only when
-   the observer is definitely available, so a failure can never hide content. */
-.js-anim .reveal{opacity:0; transition:opacity .26s cubic-bezier(.2,.7,.2,1)}
-.js-anim .reveal.in{opacity:1}
-@media (prefers-reduced-motion: reduce){
-  .js-anim .reveal{opacity:1 !important; transition:none !important}
-}
-@media (prefers-reduced-motion: no-preference){
-
-  /* cards lift and their edge picks up the accent */
-  .proj{transition:transform .28s cubic-bezier(.2,.7,.2,1), border-color .28s ease, box-shadow .28s ease}
-  .proj:hover{transform:translateY(-2px); border-color:var(--accent-soft);
-    box-shadow:0 6px 22px rgba(31,78,121,.09)}
-
-  /* social pills */
-  .socials a{transition:border-color .2s ease, color .2s ease, transform .2s ease}
-  .socials a:hover{transform:translateY(-1px)}
-
-  /* tags */
-  .tags li{transition:background-color .2s ease, color .2s ease, transform .2s ease}
-  .tags li:hover{transform:translateY(-1px); color:var(--accent)}
-
-  /* the monogram gets a slow, subtle sheen once */
-  .mark{position:relative; overflow:hidden}
-  .mark::after{content:""; position:absolute; inset:0;
-    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%);
-    transform:translateX(-120%); animation:sheen 2.6s cubic-bezier(.3,.6,.2,1) .35s 1}
-  @keyframes sheen{to{transform:translateX(120%)}}
-}
-
-
-
-/* scroll progress — one hairline, no layout impact */
-#prog{position:fixed; top:0; left:0; height:2px; width:0;
-  background:linear-gradient(90deg, var(--accent), #4d8fc4); z-index:50;
-  transition:width .1s linear}
-@media (prefers-reduced-motion: reduce){ #prog{display:none} }
-
-  main p{font-size:var(--t-base)}
-  main .lead{font-size:var(--t-lg)}
-</style>
-
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -135,71 +35,103 @@
   "dateModified": "2026-09-20",
   "author": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg", "url": "https://aaronstalberg.com/" },
   "publisher": { "@type": "Person", "@id": "https://aaronstalberg.com/#person", "name": "Aaron Stalberg" },
-  "keywords": ["AI search visibility","answer engine optimisation","generative engine optimisation","AEO","GEO","LLM visibility"],
-  "about": [
-    { "@type": "Thing", "name": "Answer engine optimisation" },
-    { "@type": "Thing", "name": "Generative engine optimisation" },
-    { "@type": "Thing", "name": "Search engine optimisation" }
-  ]
+  "inLanguage": "en-GB"
 }
 </script>
 </head>
-
 <body>
-<main> <nav class="crumbs"><a href="/">Aaron Stalberg</a> · <a href="/writing.html">Writing</a> · AI search visibility</nav> <h1>Your business is missing from AI answers, and you would not know</h1> <p class="standfirst">An assistant will recommend three or four companies for your category. If you are not one of them, nothing tells you. There is no page two.</p> <p class="byline">By Aaron Stalberg · 20 September 2026</p> <p>Ask ChatGPT or Perplexity to recommend a supplier in most categories and you get a short list, usually three to five names. The person asking treats that list as the answer. They do not open ten tabs and compare. If your business is not on it, the enquiry never reaches you, and no analytics tool will ever report the loss, because there was nothing to click.</p> <p>I build a tool that measures this for a living, so I have a bias. I also think this is the most under-noticed change in how businesses get found since search itself, and most owners have not been given a way to check whether it is happening to them.</p> <h2 class="eyebrow">What the assistant is actually doing</h2> <p>It is not ranking pages. It is assembling an answer, and to do that it has to decide which sources to believe about your category. In practice those sources tend to be:</p> <ul> <li><strong>Your own site</strong>, if it states plainly what you do, who for, and where.</li> <li><strong>Structured data</strong> that makes the entity unambiguous, so the model knows which company it is looking at and does not merge you with someone else.</li> <li><strong>Third-party mentions</strong> it already trusts for that subject, which often means directories, trade press, review sites and Wikipedia-adjacent sources rather than your own blog.</li> <li><strong>Consistency across all of the above.</strong> The same description, the same positioning, the same facts, everywhere. Contradictions make a model hedge or leave you out.</li> </ul> <p>Notice what is not on that list. Ad spend. Meta descriptions. The clever line on your homepage that does not say what you sell. And, importantly, sheer domain authority will not rescue you on its own, because the model is not scoring links, it is trying to be accurate.</p> <h2 class="eyebrow">Why an SEO report will not tell you</h2> <p>Traditional rank tracking queries a search engine and records the order of results. That measurement is real, but it answers a different question. Being position one for a term does not mean an assistant names you, and ranking badly does not always mean it will not. I have seen sites with almost no organic visibility get quoted consistently because they are the only place answering one narrow question clearly.</p> <p>You have to measure it where it happens. That means asking the assistants the questions your buyers would ask, and recording who gets named. Which is repeatable, and mildly tedious, and is essentially what my tool does at scale.</p> <h2 class="eyebrow">How to find out where you stand</h2> <p>You can do a useful version of this today without buying anything.</p> <ol> <li><strong>Write down ten questions a real buyer would ask</strong> when looking for what you sell. Not your product name. Their problem, in their words.</li> <li><strong>Ask them in three or four assistants</strong> and log who gets named. Do it signed out, so your own history does not skew it.</li> <li><strong>Count the appearances.</strong> What proportion of your ten questions produce your name, and who turns up in your place.</li> <li><strong>Read what the assistants cite.</strong> Most of them link their sources. Those links are your actual to-do list, and they are often not your own site.</li> <li><strong>Check your own pages say the obvious thing.</strong> A surprising amount of this comes down to a site that never plainly states what it sells, to whom, and where.</li> </ol> <div class="note"> Expect two findings the first time you do this. You are named less often than you assumed, and the sources driving the answers are not the pages you have been optimising. Both are useful. </div> <h2 class="eyebrow">What actually moves it</h2> <p>In rough order of how much difference it makes:</p> <ul> <li><strong>Say what you do, plainly and specifically, on your own site.</strong> Vague positioning gives a model nothing to work with, so it leaves you out.</li> <li><strong>Get your structured data right.</strong> One unambiguous entity that every platform can resolve to the same company.</li> <li><strong>Be consistent everywhere.</strong> Same description across your site, your profiles, and any directory that lists you. Contradiction reads as uncertainty.</li> <li><strong>Correct the sources that are wrong.</strong> If a model is repeating an outdated fact about you from a trade article, that is a publisher problem, and the fix is upstream of anything you can do on your own domain.</li> <li><strong>Publish real, dated, attributable writing.</strong> Assistants need something citable. A page that states a position clearly is more useful to them than ten that hedge.</li> </ul> <h2 class="eyebrow">The honest caveat</h2> <p>This field is young and the models change underneath it. Anything you measure today will have moved in six months, and nobody, myself included, can promise a position you hold permanently. What you can do is make yourself easy to describe accurately, and then keep checking whether the description is actually being used.</p> <p>That last part is the bit most businesses skip, which is why they find out about all of this from a lost deal rather than a dashboard.</p> <div class="cta"> <p>I built a tool for exactly this measurement problem.</p> <a class="go" href="https://www.showuplabs.com" target="_blank" rel="noopener">ShowUp Labs →</a> </div> <footer> <p>Aaron Stalberg · United Kingdom</p> <p> <a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/answers.html">Questions</a> · <a href="/writing.html">Writing</a> · <a href="/giving.html">Why I give</a> </p> </footer> </main>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<!DOCTYPE html>
+<header class="mast">
+  <div class="wrap">
+    <div class="mast__in">
+      <a class="mast__brand" href="/"><span class="dot" aria-hidden="true"></span>Aaron Stalberg</a>
+      <nav class="mast__nav" aria-label="Primary">
+        <a href="/about.html">About</a>
+        <a href="/profile.html">Profile</a>
+        <a href="/writing.html" aria-current="page">Writing</a>
+        <a href="/answers.html">Questions</a>
+        <a href="/giving.html">Giving</a>
+      </nav>
+      <div class="mast__tools">
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        </button>
+        <button class="icon-btn mast__menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="mast__cta" href="mailto:info@aaronstalberg.com">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="sheet" id="sheet" aria-label="Mobile">
+  <a href="/about.html">About</a><a href="/profile.html">Profile</a><a href="/writing.html">Writing</a>
+  <a href="/answers.html">Questions</a><a href="/giving.html">Giving</a>
+  <a href="mailto:info@aaronstalberg.com">Get in touch</a>
+</nav>
+<main id="main">
+<article class="wrap">
+  <div class="prose">
+    <nav class="lbl" style="margin-bottom:var(--s5)"><a href="/writing.html" style="color:inherit">Writing</a> &nbsp;/&nbsp; AI search visibility</nav>
+    <h1>Your business is missing from AI answers, and you would not know</h1>
+    <p class="standfirst">An assistant will recommend three or four companies for your category. If you are not one of them, nothing tells you. There is no page two.</p>
+    <p class="byline">By Aaron Stalberg &nbsp;&middot;&nbsp; 20 September 2026</p>
+<p>Ask ChatGPT or Perplexity to recommend a supplier in most categories and you get a short list, usually three to five names. The person asking treats that list as the answer. They do not open ten tabs and compare. If your business is not on it, the enquiry never reaches you, and no analytics tool will ever report the loss, because there was nothing to click.</p> <p>I build a tool that measures this for a living, so I have a bias. I also think this is the most under-noticed change in how businesses get found since search itself, and most owners have not been given a way to check whether it is happening to them.</p> <h2 class="eyebrow">What the assistant is actually doing</h2> <p>It is not ranking pages. It is assembling an answer, and to do that it has to decide which sources to believe about your category. In practice those sources tend to be:</p> <ul> <li><strong>Your own site</strong>, if it states plainly what you do, who for, and where.</li> <li><strong>Structured data</strong> that makes the entity unambiguous, so the model knows which company it is looking at and does not merge you with someone else.</li> <li><strong>Third-party mentions</strong> it already trusts for that subject, which often means directories, trade press, review sites and Wikipedia-adjacent sources rather than your own blog.</li> <li><strong>Consistency across all of the above.</strong> The same description, the same positioning, the same facts, everywhere. Contradictions make a model hedge or leave you out.</li> </ul> <p>Notice what is not on that list. Ad spend. Meta descriptions. The clever line on your homepage that does not say what you sell. And, importantly, sheer domain authority will not rescue you on its own, because the model is not scoring links, it is trying to be accurate.</p> <h2 class="eyebrow">Why an SEO report will not tell you</h2> <p>Traditional rank tracking queries a search engine and records the order of results. That measurement is real, but it answers a different question. Being position one for a term does not mean an assistant names you, and ranking badly does not always mean it will not. I have seen sites with almost no organic visibility get quoted consistently because they are the only place answering one narrow question clearly.</p> <p>You have to measure it where it happens. That means asking the assistants the questions your buyers would ask, and recording who gets named. Which is repeatable, and mildly tedious, and is essentially what my tool does at scale.</p> <h2 class="eyebrow">How to find out where you stand</h2> <p>You can do a useful version of this today without buying anything.</p> <ol> <li><strong>Write down ten questions a real buyer would ask</strong> when looking for what you sell. Not your product name. Their problem, in their words.</li> <li><strong>Ask them in three or four assistants</strong> and log who gets named. Do it signed out, so your own history does not skew it.</li> <li><strong>Count the appearances.</strong> What proportion of your ten questions produce your name, and who turns up in your place.</li> <li><strong>Read what the assistants cite.</strong> Most of them link their sources. Those links are your actual to-do list, and they are often not your own site.</li> <li><strong>Check your own pages say the obvious thing.</strong> A surprising amount of this comes down to a site that never plainly states what it sells, to whom, and where.</li> </ol> <div class="note"> Expect two findings the first time you do this. You are named less often than you assumed, and the sources driving the answers are not the pages you have been optimising. Both are useful. </div> <h2 class="eyebrow">What actually moves it</h2> <p>In rough order of how much difference it makes:</p> <ul> <li><strong>Say what you do, plainly and specifically, on your own site.</strong> Vague positioning gives a model nothing to work with, so it leaves you out.</li> <li><strong>Get your structured data right.</strong> One unambiguous entity that every platform can resolve to the same company.</li> <li><strong>Be consistent everywhere.</strong> Same description across your site, your profiles, and any directory that lists you. Contradiction reads as uncertainty.</li> <li><strong>Correct the sources that are wrong.</strong> If a model is repeating an outdated fact about you from a trade article, that is a publisher problem, and the fix is upstream of anything you can do on your own domain.</li> <li><strong>Publish real, dated, attributable writing.</strong> Assistants need something citable. A page that states a position clearly is more useful to them than ten that hedge.</li> </ul> <h2 class="eyebrow">The honest caveat</h2> <p>This field is young and the models change underneath it. Anything you measure today will have moved in six months, and nobody, myself included, can promise a position you hold permanently. What you can do is make yourself easy to describe accurately, and then keep checking whether the description is actually being used.</p> <p>That last part is the bit most businesses skip, which is why they find out about all of this from a lost deal rather than a dashboard.</p> <div class="cta"> <p>I built a tool for exactly this measurement problem.</p> <a class="go" href="https://www.showuplabs.com" target="_blank" rel="noopener">ShowUp Labs →</a> </div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h4>Aaron Stalberg</h4>
+        <p style="max-width:34ch; color:var(--n-5)">I build AI tools and AI-powered businesses. Founder of ShowUp Labs and AutoCoreAgent.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="/profile.html">Profile</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/writing.html">Writing</a></li>
+          <li><a href="/answers.html">Questions</a></li>
+          <li><a href="/giving.html">Why I give</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://www.showuplabs.com" target="_blank" rel="noopener">ShowUp Labs</a></li>
+          <li><a href="https://www.autocoreagent.com" target="_blank" rel="noopener">AutoCoreAgent</a></li>
+          <li><a href="https://www.wikidata.org/wiki/Q141501121" target="_blank" rel="noopener">Wikidata</a></li>
+          <li><a href="https://github.com/onchainaaron-rgb" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__base"><span>&copy; 2026 Aaron Stalberg</span><span>United Kingdom</span></div>
+  </div>
+</footer>
+</main>
 <script>
 (function(){
   "use strict";
-  var doc = document, reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var hasIO = "IntersectionObserver" in window;
-
-  /* ---------- scroll progress (safe: fixed, pointer-events none) ---------- */
-  if (!reduce) {
-    var bar = doc.createElement("div");
-    bar.id = "prog";
-    bar.setAttribute("aria-hidden", "true");
-    bar.style.cssText = "position:fixed;top:0;left:0;height:2px;width:0;z-index:20;pointer-events:none;background:linear-gradient(90deg,#1f4e79,#4d8fc4)";
-    doc.body.appendChild(bar);
-    var queued = false;
-    var paint = function(){
-      var max = doc.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
-      queued = false;
-    };
-    window.addEventListener("scroll", function(){
-      if (!queued) { queued = true; requestAnimationFrame(paint); }
-    }, { passive: true });
-    paint();
-  }
-
-  /* ---------- reveal on scroll ----------
-     Opt in only when we can guarantee the un-hide, and add a hard fail-safe. */
-  if (!reduce && hasIO) {
-    doc.documentElement.classList.add("js-anim");
-    var seen = [];
-    var show = function(el){ el.classList.add("in"); };
-    var io = new IntersectionObserver(function(entries){
-      for (var i = 0; i < entries.length; i++) {
-        if (entries[i].isIntersecting) { show(entries[i].target); io.unobserve(entries[i].target); }
-      }
-    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.01 });
-
-    var targets = doc.querySelectorAll("main > h2, main > ul, main > p, .proj, .post, .q, footer");
-    Array.prototype.forEach.call(targets, function(el, i){
-      el.classList.add("reveal");
-      el.style.transitionDelay = Math.min(i % 3, 2) * 45 + "ms";
-      seen.push(el);
-      io.observe(el);
+  var root=document.documentElement, saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  root.setAttribute('data-theme', saved==='light'?'light':'dark');
+  var b=document.getElementById('theme');
+  if(b)b.addEventListener('click',function(){
+    var n=root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme',n); try{localStorage.setItem('theme',n);}catch(e){}
+  });
+  var m=document.getElementById('menu'), s=document.getElementById('sheet');
+  if(m&&s){
+    m.addEventListener('click',function(){
+      var o=s.getAttribute('data-open')==='true';
+      s.setAttribute('data-open',o?'false':'true'); m.setAttribute('aria-expanded',o?'false':'true');
     });
-
-    /* FAIL-SAFE: anything still hidden after 2.5s is shown regardless.
-       This is the guarantee the first version lacked. */
-    setTimeout(function(){
-      Array.prototype.forEach.call(seen, function(el){ el.classList.add("in"); });
-    }, 2500);
+    s.addEventListener('click',function(e){ if(e.target.tagName==='A'){s.setAttribute('data-open','false');m.setAttribute('aria-expanded','false');} });
   }
-
-  
 })();
 </script>
 </body>
